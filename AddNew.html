@@ -13,50 +13,26 @@
 
 <body>
   <header>
-    <button class="tab" id="back" onclick="window.location.href='zomato.html';">
-      <i class="fa-solid fa-arrow-left fa-lg" style="color: #000000;"></i>
-      <h3>Back</h3>
-    </button>
-
     <div id="logo">
       <h1>ZestX</h1>
     </div>
 
     <div id="search-box">
-      <div id="s"><input placeholder="Search for any dishes" id="search-here" oninput="filterMenu()">
+      <div id="s"><input placeholder="Search" id="search-here">
       <div id="search-icon">
         <i class="fa-solid fa-magnifying-glass fa-lg" style="color: #000000;"></i></div> 
       </div>
-      <div id="dropdownMenu" class="dropdown-menu">
-        <div class="menu-item">Pizza</div>
-        <div class="menu-item">Burger</div>
-        <div class="menu-item">Pasta</div>
-        <div class="menu-item">Salad</div>
-        <div class="menu-item">Sushi</div>
-        <div class="menu-item">Sandwich</div>
-        <div class="menu-item">Fries</div>
-        <div class="menu-item">Indian</div>
-        <div class="menu-item">Italian</div>
-        <div class="menu-item">Chinese</div>
-        <div class="menu-item">Mexican</div>
-        <div class="menu-item">Sweets</div>
-        <div class="menu-item">Coolers</div>
-        <div class="menu-item">Refreshments</div>
-        <div class="menu-item">Beverages</div>
-        <div class="menu-item">Desserts</div>
-        <div class="menu-item">Frankies</div>
-      </div>
     </div>
 
-    <button class="tab" id="cart">
+    <div class="tab" id="cart">
       <i class="fa-solid fa-cart-shopping fa-lg" style="color: #000000;"></i>
       <h3>My Cart</h3>
-    </button>
+    </div>
 
-    <button class="tab" id="logout">
-      <i class="fa-solid fa-power-off fa-lg" style="color: #000000;"></i>
-      <h3>Logout</h3>
-    </button>
+    <div class="tab" id="profile">
+      <i class="fa-solid fa-user fa-lg" style="color: #000000;"></i>
+      <h3>My Profile</h3>
+    </div>
   </header>
 
   <main>
@@ -109,9 +85,26 @@
     </div>
   </main>
   <script>
-  document.getElementById("logout").addEventListener("click",function(){
-    window.location.href="login.html";
-    })
+    document.getElementById('item-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const formData = new FormData(e.target);
+      
+      const data = Object.fromEntries(formData.entries());
+      
+      const response = await fetch('/add-item', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+    
+      if (response.ok) {
+        alert('Item added successfully!');
+      } else {
+        alert('Failed to add item.');
+      }
+    });
     </script>
+    
 </body>
 </html>

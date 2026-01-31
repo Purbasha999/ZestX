@@ -1,10 +1,18 @@
 <?php
-$servername = "127.0.0.1";
-$username = "root";
-$password = "";
-$dbname = "zestx";
+
+<?php
+require __DIR__ . '/vendor/autoload.php';
+
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
+$servername = $_ENV['MYSQL_HOST'];
+$username   = $_ENV['MYSQL_USER'];
+$password   = $_ENV['MYSQL_PASSWORD'];
+$dbname     = $_ENV['MYSQL_DB'];
 
 $conn = new mysqli($servername, $username, $password, $dbname);
+
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
@@ -24,14 +32,9 @@ $stmt = $conn->prepare("INSERT INTO menu (name, description, image, price, tag) 
 $stmt->bind_param("sssds", $name, $description, $image, $price, $tag);
 
 if ($stmt->execute()) {
-  echo '<script>
-  alert("Item added successfully!");
-  setTimeout(function() {
-    window.location.href = "zomato.html";
-   }, 3000);
-  </script>';
+  echo "Item added successfully! <a href='AddNew.html'>Add another</a>";
 } else {
-  echo "Error adding item: " . $conn->error;
+  echo "Error: " . $stmt->error;
 }
 
 $stmt->close();
