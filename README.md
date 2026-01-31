@@ -5,7 +5,7 @@ This project focuses on **PHP server-side logic**, session handling, and interac
 
 ---
 
-## 🔧 Tech Stack
+## Tech Stack
 
 - **Frontend:** HTML, CSS, JavaScript  
 - **Backend:** PHP  
@@ -13,23 +13,23 @@ This project focuses on **PHP server-side logic**, session handling, and interac
 
 ---
 
-## ✨ Features
+## Features
 
-### 👤 User Features
+### User Features
 - User login and authentication using PHP sessions  
 - Browse available dishes by category  
 - Search for dishes using a search bar  
 - Add dishes to cart and update cart items dynamically  
 - Interactive and responsive user interface  
 
-### 🔐 Admin Features
+### Admin Features
 - Admin login system  
 - Add new dishes from the admin panel  
 - Manage dish listings displayed to users  
 
 ---
 
-## 🧠 Project Highlights
+## Project Highlights
 
 - Focused on **core backend logic** without database dependency  
 - Implemented **session-based cart management**  
